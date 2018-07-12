@@ -1,0 +1,12 @@
+print：向标准输出对象打印输出
+>>> print(1,2,3)
+1 2 3
+>>> print(1,2,3,sep = '+')
+1+2+3
+>>> print(1,2,3,sep = '+',end = '=?')
+1+2+3=?
+input：读取用户输入值
+>>> s = input('please input your name:')
+please input your name:Ain
+>>> s
+'Ain'
