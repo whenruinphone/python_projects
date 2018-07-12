@@ -1,0 +1,6 @@
+open：使用指定的模式和编码打开文件，返回文件读写对象
+# t为文本读写，b为二进制读写
+>>> a = open('test.txt','rt')
+>>> a.read()
+'some text'
+>>> a.close()
