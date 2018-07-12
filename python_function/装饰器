@@ -1,0 +1,83 @@
+property：标示属性的装饰器
+复制代码
+>>> class C:
+    def __init__(self):
+        self._name = ''
+    @property
+    def name(self):
+        """i'm the 'name' property."""
+        return self._name
+    @name.setter
+    def name(self,value):
+        if value is None:
+            raise RuntimeError('name can not be None')
+        else:
+            self._name = value
+
+            
+>>> c = C()
+
+>>> c.name # 访问属性
+''
+>>> c.name = None # 设置属性时进行验证
+Traceback (most recent call last):
+  File "<pyshell#84>", line 1, in <module>
+    c.name = None
+  File "<pyshell#81>", line 11, in name
+    raise RuntimeError('name can not be None')
+RuntimeError: name can not be None
+
+>>> c.name = 'Kim' # 设置属性
+>>> c.name # 访问属性
+'Kim'
+
+>>> del c.name # 删除属性，不提供deleter则不能删除
+Traceback (most recent call last):
+  File "<pyshell#87>", line 1, in <module>
+    del c.name
+AttributeError: can't delete attribute
+>>> c.name
+'Kim'
+复制代码
+classmethod：标示方法为类方法的装饰器
+复制代码
+>>> class C:
+    @classmethod
+    def f(cls,arg1):
+        print(cls)
+        print(arg1)
+
+        
+>>> C.f('类对象调用类方法')
+<class '__main__.C'>
+类对象调用类方法
+
+>>> c = C()
+>>> c.f('类实例对象调用类方法')
+<class '__main__.C'>
+类实例对象调用类方法
+复制代码
+staticmethod：标示方法为静态方法的装饰器
+复制代码
+# 使用装饰器定义静态方法
+>>> class Student(object):
+    def __init__(self,name):
+        self.name = name
+    @staticmethod
+    def sayHello(lang):
+        print(lang)
+        if lang == 'en':
+            print('Welcome!')
+        else:
+            print('你好！')
+
+            
+>>> Student.sayHello('en') #类调用,'en'传给了lang参数
+en
+Welcome!
+
+>>> b = Student('Kim')
+>>> b.sayHello('zh')  #类实例对象调用,'zh'传给了lang参数
+zh
+你好
+复制代码
