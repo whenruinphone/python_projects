@@ -1,0 +1,104 @@
+__import__：动态导入模块
+index = __import__('index')
+index.sayHello()
+isinstance：判断对象是否是类或者类型元组中任意类元素的实例
+>>> isinstance(1,int)
+True
+>>> isinstance(1,str)
+False
+>>> isinstance(1,(int,str))
+True
+issubclass：判断类是否是另外一个类或者类型元组中任意类元素的子类
+复制代码
+>>> issubclass(bool,int)
+True
+>>> issubclass(bool,str)
+False
+
+>>> issubclass(bool,(str,int))
+True
+复制代码
+hasattr：检查对象是否含有属性
+复制代码
+#定义类A
+>>> class Student:
+    def __init__(self,name):
+        self.name = name
+
+        
+>>> s = Student('Aim')
+>>> hasattr(s,'name') #a含有name属性
+True
+>>> hasattr(s,'age') #a不含有age属性
+False
+复制代码
+getattr：获取对象的属性值
+复制代码
+#定义类Student
+>>> class Student:
+    def __init__(self,name):
+        self.name = name
+
+>>> getattr(s,'name') #存在属性name
+'Aim'
+
+>>> getattr(s,'age',6) #不存在属性age，但提供了默认值，返回默认值
+
+>>> getattr(s,'age') #不存在属性age，未提供默认值，调用报错
+Traceback (most recent call last):
+  File "<pyshell#17>", line 1, in <module>
+    getattr(s,'age')
+AttributeError: 'Stduent' object has no attribute 'age'
+复制代码
+setattr：设置对象的属性值
+复制代码
+>>> class Student:
+    def __init__(self,name):
+        self.name = name
+
+        
+>>> a = Student('Kim')
+>>> a.name
+'Kim'
+>>> setattr(a,'name','Bob')
+>>> a.name
+'Bob'
+复制代码
+delattr：删除对象的属性
+复制代码
+#定义类A
+>>> class A:
+    def __init__(self,name):
+        self.name = name
+    def sayHello(self):
+        print('hello',self.name)
+
+#测试属性和方法
+>>> a.name
+'小麦'
+>>> a.sayHello()
+hello 小麦
+
+#删除属性
+>>> delattr(a,'name')
+>>> a.name
+Traceback (most recent call last):
+  File "<pyshell#47>", line 1, in <module>
+    a.name
+AttributeError: 'A' object has no attribute 'name'
+复制代码
+callable：检测对象是否可被调用
+复制代码
+>>> class B: #定义类B
+    def __call__(self):
+        print('instances are callable now.')
+
+        
+>>> callable(B) #类B是可调用对象
+True
+>>> b = B() #调用类B
+>>> callable(b) #实例b是可调用对象
+True
+>>> b() #调用实例b成功
+instances are callable now.
+复制代码
