@@ -1,0 +1,26 @@
+globals：返回当前作用域内的全局变量和其值组成的字典
+复制代码
+>>> globals()
+{'__spec__': None, '__package__': None, '__builtins__': <module 'builtins' (built-in)>, '__name__': '__main__', '__doc__': None, '__loader__': <class '_frozen_importlib.BuiltinImporter'>}
+>>> a = 1
+>>> globals() #多了一个a
+{'__spec__': None, '__package__': None, '__builtins__': <module 'builtins' (built-in)>, 'a': 1, '__name__': '__main__', '__doc__': None, '__loader__': <class '_frozen_importlib.BuiltinImporter'>}
+复制代码
+locals：返回当前作用域内的局部变量和其值组成的字典
+复制代码
+>>> def f():
+    print('before define a ')
+    print(locals()) #作用域内无变量
+    a = 1
+    print('after define a')
+    print(locals()) #作用域内有一个a变量，值为1
+
+    
+>>> f
+<function f at 0x03D40588>
+>>> f()
+before define a 
+{} 
+after define a
+{'a': 1}
+复制代码
