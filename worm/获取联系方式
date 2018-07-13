@@ -46,7 +46,7 @@ if __name__ == '__main__':
         response2 = opener.open(req2)
         html = response2.read().decode('utf-8')
         index = html.find('jb_contact_email')
-        #打印查询结果
+        #打印查询结果（根据实际自行调整）
         print('联系邮箱:%s' % html[index+19:-2])
 
     except error.URLError as e:
